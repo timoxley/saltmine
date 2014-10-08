@@ -1,6 +1,6 @@
 {
   "name": "saltmine",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha2",
   "description": "Arbitrary computation on the GPU using WebGL.",
   "main": "index.js",
   "scripts": {
