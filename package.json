@@ -1,0 +1,35 @@
+{
+  "name": "saltmine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "beefy test/index.js -o"
+  },
+  "keywords": [],
+  "browserify": {
+    "transform": [
+      "glslify",
+      "brfs"
+    ]
+  },
+  "author": "Tim Oxley <secoif@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "almost-equal": "0.0.0",
+    "beefy": "~2.1.1",
+    "brfs": "~1.2.0",
+    "browserify": "~6.0.3",
+    "tape": "~3.0.0"
+  },
+  "dependencies": {
+    "a-big-triangle": "~1.0.0",
+    "canvas-pixels": "0.0.0",
+    "gl-context": "~0.1.1",
+    "gl-shader": "~3.0.0",
+    "gl-texture2d": "~2.0.4",
+    "glsl-read-float": "~1.0.0",
+    "multiline": "~1.0.1",
+    "ndarray": "~1.0.15"
+  }
+}
