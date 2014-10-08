@@ -71,3 +71,15 @@ test('4 parameters, small data, simple operation', function(t) {
   })
   t.end()
 })
+
+test('zero', function(t) {
+  var input = [1,2,3]
+  var output = saltmine(input, multiline(function(){/*
+    return 0.0; // double number
+  */}))
+  t.ok(output, 'received response')
+  t.deepEqual(output, [0,0,0])
+  t.end()
+})
+
+

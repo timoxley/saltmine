@@ -21,6 +21,7 @@ module.exports = function (a, b, c, d, operation) {
 }
 
 function SaltMine(datasets, operation) {
+
   var size = Math.ceil(datasets[0].length / 2)
 
   // setup canvas
@@ -70,7 +71,8 @@ function SaltMine(datasets, operation) {
     var g = pixels[i + 1]
     var b = pixels[i + 2]
     var a = pixels[i + 3]
-    output[i / 4] = unpackFloat(r, g, b, a)
+    var result = unpackFloat(r, g, b, a)
+    output[i / 4] = result || 0
   }
 
   return output
