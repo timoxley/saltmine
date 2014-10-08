@@ -15,7 +15,7 @@ function almost(a, b) {
 }
 
 test('multiply', function(t) {
-  var size = 4096
+  var size = 1024*1024 
   console.time('multiply total')
   var a = []
   var b = []
@@ -50,7 +50,7 @@ test('multiply', function(t) {
 })
 
 test('basicmath', function(t) {
-  var size = 6144
+  var size = 1024*1024 
   console.time('basicmath total')
   var a = []
   for (var i = 0; i < size; i++) {
@@ -60,13 +60,13 @@ test('basicmath', function(t) {
   console.time('basicmath: for loop')
   var expected = []
   for (var i = 0; i < size; i++) {
-    expected.push(Math.sqrt(a[i]))
+    expected.push(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))))
   }
   console.timeEnd('basicmath: for loop')
 
   console.time('basicmath: saltmine')
   var output = saltmine(a, multiline(function(){/*
-    return sqrt(a);
+    return pow(sqrt(sin(a)), sqrt(sin(a)));
   */}))
   console.timeEnd('basicmath: saltmine')
   var maxErrors = 10

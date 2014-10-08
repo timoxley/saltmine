@@ -20,9 +20,11 @@ module.exports = function (a, b, c, d, operation) {
   return SaltMine(args.slice(0, -1), args.pop())
 }
 
+var size = 2048
+
 function SaltMine(datasets, operation) {
 
-  var size = Math.ceil(datasets[0].length / 2)
+  //var size = Math.ceil(datasets[0].length / 2)
 
   // setup canvas
   var canvas = document.createElement('canvas')
