@@ -40,14 +40,16 @@ function SaltMine(datasets, operation) {
   var updatedFragSource = replaceOperation(datasets, operation)
 
   var shader = createShader(gl, vertSource, updatedFragSource)
+  var texture = createTexture(gl, size, size, gl.RGBA, gl.FLOAT)
 
   var buffer = new Float32Array(size * size * 4)
-  datasets.forEach(function(data, index) {
-    loadChannel(buffer, data, index)
-  })
+
+  for (var i = 0, l = datasets.length; i < l; i ++) {
+    var data = datasets[i];
+    loadChannel(buffer, data, i)
+  }
 
   // load
-  var texture = createTexture(gl, size, size, gl.RGBA, gl.FLOAT)
   texture.setPixels(ndarray(buffer, [size, size, 4]))
 
   // bind
