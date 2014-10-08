@@ -26,6 +26,11 @@ var output = saltmine(input, multiline(function(){/*
 // ]
 ```
 
+## Credit
+
+Massive thanks to the talented [@hughsk](https://github.com/hughsk) for pairing with me
+on this. Saved me from many wrong turns.
+
 ## License
 
 MIT
