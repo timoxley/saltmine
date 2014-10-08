@@ -15,7 +15,7 @@ var multiline = require('multiline')
 var input = [1,2,3]
 
 var output = saltmine(input, multiline(function(){/*
-  return a * 2.0; # double number
+  return a * 2.0; // double number
 */}))
 
 // Result (Note float precision):

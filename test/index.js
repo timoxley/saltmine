@@ -17,9 +17,8 @@ function almost(a, b) {
 test('single parameter, small data, simple operation', function(t) {
   var input = [1,2,3]
   var output = saltmine(input, multiline(function(){/*
-    return a * 2.0; # double number
+    return a * 2.0; // double number
   */}))
-  console.log(JSON.stringify(output, null, 2))
   t.ok(output, 'received response')
   output.forEach(function(num, index) {
     var expected = input[index] * 2
