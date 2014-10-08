@@ -31,17 +31,29 @@ highp vec4 encode_float(highp float v) {
 }
 
 float operation(float a) {
-  #REPLACE
+  return a; // REPLACE
+}
+
+float operation(float a, float b) {
+  return b; // REPLACE
+}
+
+float operation(float a, float b, float c) {
+  return c; // REPLACE
+}
+
+float operation(float a, float b, float c, float d) {
+  return d; // REPLACE
 }
 
 void main() {
   float a = texture2D(uInput, vuv.yx).r;
   float b = texture2D(uInput, vuv.yx).g;
-  /*float c = texture2D(uInput, vuv.yx).b;*/
-  /*float d = texture2D(uInput, vuv.yx).d;*/
+  float c = texture2D(uInput, vuv.yx).b;
+  float d = texture2D(uInput, vuv.yx).a;
 
   // update data variable
-  gl_FragColor = encode_float(operation(a));
+  gl_FragColor = encode_float(operation());
 }
 
 

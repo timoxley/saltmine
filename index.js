@@ -1,6 +1,7 @@
 "use strict"
 
 var fs = require('fs')
+var slice = require('sliced')
 var createShader = require('gl-shader')
 var createContext = require('gl-context')
 var ndarray = require('ndarray')
@@ -14,8 +15,13 @@ var canvasPixels = require('canvas-pixels')
 var fragSource = fs.readFileSync(__dirname + '/index.frag', 'utf8')
 var vertSource = fs.readFileSync(__dirname + '/index.vert', 'utf8')
 
-module.exports = function(data, operation) {
-  var size = Math.ceil(data.length / 2)
+module.exports = function (a, b, c, d, operation) {
+  var args = slice(arguments)
+  return SaltMine(args.slice(0, -1), args.pop())
+}
+
+function SaltMine(datasets, operation) {
+  var size = Math.ceil(datasets[0].length / 2)
 
   // setup canvas
   var canvas = document.createElement('canvas')
@@ -31,16 +37,14 @@ module.exports = function(data, operation) {
   enableFloatTextures(gl)
 
   // add body to fragment shader operation
-  var updatedFragSource = fragSource.replace('#REPLACE', operation)
-  var shader = createShader(gl, vertSource, updatedFragSource)
-  var buffer = new Float32Array(size * size * 4)
+  var updatedFragSource = replaceOperation(datasets, operation)
 
-  // load data into red channel
-  for (var i = 0, l = data.length; i < l; i ++) {
-    var v = data[i]
-    var r = i * 4
-    buffer[r] = v
-  }
+  var shader = createShader(gl, vertSource, updatedFragSource)
+
+  var buffer = new Float32Array(size * size * 4)
+  datasets.forEach(function(data, index) {
+    loadChannel(buffer, data, index)
+  })
 
   // load
   var texture = createTexture(gl, size, size, gl.RGBA, gl.FLOAT)
@@ -54,12 +58,12 @@ module.exports = function(data, operation) {
   draw(gl)
 
   var pixels = canvasPixels(gl)
-
+  var template = datasets[0]
   // output same datatype as input
-  var output = new (data.constructor)(data.length)
+  var output = new (template.constructor)(template.length)
 
   // copy to result
-  for (var i = 0, l = data.length * 4; i < l; i += 4) {
+  for (var i = 0, l = template.length * 4; i < l; i += 4) {
     var r = pixels[i + 0]
     var g = pixels[i + 1]
     var b = pixels[i + 2]
@@ -70,8 +74,25 @@ module.exports = function(data, operation) {
   return output
 }
 
+function loadChannel(buffer, data, channel) {
+  for (var i = 0, l = data.length; i < l; i ++) {
+    var v = data[i]
+    var r = i * 4
+    buffer[r + channel] = v
+  }
+}
+
 function enableFloatTextures(gl) {
   if (!gl.getExtension('OES_texture_float')) {
     throw new Error('no floating point texture support');
   }
+}
+
+function replaceOperation(datasets, operation) {
+  var arity = datasets.length
+  var keys = 'abcd'
+  var args = keys.split('').slice(0, arity).join(', ')
+  return fragSource
+  .replace('return '+keys[arity - 1]+'; // REPLACE', operation) // function body
+  .replace('operation()', 'operation('+args+')') // function call
 }

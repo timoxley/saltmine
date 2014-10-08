@@ -30,7 +30,8 @@
     "gl-texture2d": "~2.0.4",
     "glsl-read-float": "~1.0.0",
     "multiline": "~1.0.1",
-    "ndarray": "~1.0.15"
+    "ndarray": "~1.0.15",
+    "sliced": "0.0.5"
   },
   "directories": {
     "test": "test"
