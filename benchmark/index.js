@@ -9,8 +9,8 @@ var almostEqual = require('almost-equal')
 function almost(a, b) {
   return almostEqual(
     a, b,
-    almostEqual.FLT_EPSILON,
-    almostEqual.FLT_EPSILON
+    almostEqual.FLT_EPSILON * 2,
+    almostEqual.FLT_EPSILON * 2
   )
 }
 
