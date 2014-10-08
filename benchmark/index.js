@@ -60,13 +60,15 @@ test('basicmath', function(t) {
   console.time('basicmath: for loop')
   var expected = []
   for (var i = 0; i < size; i++) {
-    expected.push(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))))
+    expected.push(
+      Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))) / Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i])))) + Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))) / Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))))
+    )
   }
   console.timeEnd('basicmath: for loop')
 
   console.time('basicmath: saltmine')
   var output = saltmine(a, multiline(function(){/*
-    return pow(sqrt(sin(a)), sqrt(sin(a)));
+    return sqrt(pow(sqrt(sin(a)), sqrt(sin(a))) / pow(sqrt(sin(a)), sqrt(sin(a)))) + sqrt(pow(sqrt(sin(a)), sqrt(sin(a))) / pow(sqrt(sin(a)), sqrt(sin(a))));
   */}))
   console.timeEnd('basicmath: saltmine')
   var maxErrors = 10
