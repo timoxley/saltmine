@@ -47,13 +47,11 @@ var output = saltmine(a, b, multiline(function(){/*
 
 ## Caveats
 
-* Current maximum data set is 4096 items.
 * Overhead of setup/reading pixels generally makes calculations slower than just doing it on the CPU.
 
 ## TODO
 
 * Support more datatypes. Everything is float now. Vectors and matrices possibly better candidates for parallel speedup.
-* Figure out how to process more data.
 
 ## Credit
 
