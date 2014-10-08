@@ -1,7 +1,7 @@
 {
   "name": "saltmine",
   "version": "1.0.0-alpha",
-  "description": "",
+  "description": "Arbitrary computation on the GPU using WebGL.",
   "main": "index.js",
   "scripts": {
     "test": "beefy test/index.js -o"
@@ -31,5 +31,16 @@
     "glsl-read-float": "~1.0.0",
     "multiline": "~1.0.1",
     "ndarray": "~1.0.15"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timoxley/saltmine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timoxley/saltmine/issues"
+  },
+  "homepage": "https://github.com/timoxley/saltmine"
 }
