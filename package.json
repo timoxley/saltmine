@@ -4,12 +4,12 @@
   "description": "Arbitrary computation on the GPU using WebGL.",
   "main": "index.js",
   "scripts": {
-    "test": "beefy test/index.js -o"
+    "test": "beefy test/index.js -o",
+    "bench": "beefy benchmark/index.js -o"
   },
   "keywords": [],
   "browserify": {
     "transform": [
-      "glslify",
       "brfs"
     ]
   },
@@ -28,6 +28,7 @@
     "gl-context": "~0.1.1",
     "gl-shader": "~3.0.0",
     "gl-texture2d": "~2.0.4",
+    "gl-texture2d-display": "~1.0.0",
     "glsl-read-float": "~1.0.0",
     "multiline": "~1.0.1",
     "ndarray": "~1.0.15",
