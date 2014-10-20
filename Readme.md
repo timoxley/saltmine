@@ -45,9 +45,40 @@ var output = saltmine(a, b, multiline(function(){/*
 // ]
 ```
 
-## Caveats
 
-* Overhead of setup/reading pixels generally makes calculations slower than just doing it on the CPU.
+## Performance
+
+The overhead of setup/reading pixels is quite high. For small amounts of calculations it's actually faster to do this on the CPU.
+
+e.g. For a simple multiply operation on 1,048,576 (1024 * 1024) items, the CPU blows saltmine out of the water:
+
+
+```
+multiply: for loop (CPU): 112.860ms
+multiply: saltmine (GPU): 822.415ms
+
+```
+
+But if we add more mathematics, saltmine eventually pays off:
+
+```
+moremath: for loop (CPU): 705.938ms
+moremath: saltmine (CPU): 628.816ms
+```
+
+This is the amount of mathematics required to get a payoff:
+
+```js
+// in JS
+Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))) / Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i])))) + Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))) / Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))))
+```
+
+```js
+// Equivalent operation in GLSL
+return sqrt(pow(sqrt(sin(a)), sqrt(sin(a))) / pow(sqrt(sin(a)), sqrt(sin(a)))) + sqrt(pow(sqrt(sin(a)), sqrt(sin(a))) / pow(sqrt(sin(a)), sqrt(sin(a))));
+```
+
+See the benchmarks for more information.
 
 ## TODO
 
