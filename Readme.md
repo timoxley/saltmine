@@ -70,12 +70,23 @@ This is the amount of mathematics required to get a payoff:
 
 ```js
 // in JS
-Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))) / Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i])))) + Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))) / Math.pow(Math.sqrt(Math.sin(a[i])), Math.sqrt(Math.sin(a[i]))))
+Math.sqrt(Math.pow(Math.sqrt(Math.sin(a[
+i])), Math.sqrt(Math.sin(a[i]))) /
+Math.pow(Math.sqrt(Math.sin(a[i])),
+Math.sqrt(Math.sin(a[i])))) +
+Math.sqrt(Math.pow(Math.sqrt(Math.sin(
+a[i])), Math.sqrt(Math.sin(a[i]))) /
+Math.pow(Math.sqrt(Math.sin(a[i])),
+Math.sqrt(Math.sin(a[i])))))
 ```
 
 ```js
 // Equivalent operation in GLSL
-return sqrt(pow(sqrt(sin(a)), sqrt(sin(a))) / pow(sqrt(sin(a)), sqrt(sin(a)))) + sqrt(pow(sqrt(sin(a)), sqrt(sin(a))) / pow(sqrt(sin(a)), sqrt(sin(a))));
+return sqrt(pow(sqrt(sin(a)), sqrt(sin(
+  a))) / pow(sqrt(sin(a)), sqrt(sin(
+  a)))) + sqrt(pow(sqrt(sin(a)), sqrt(
+  sin(a))) / pow(sqrt(sin(a)), sqrt(
+  sin(a))));
 ```
 
 See the benchmarks for more information.
